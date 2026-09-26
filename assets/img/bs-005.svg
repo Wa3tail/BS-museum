@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="极光记录仪">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F4F6F4"/><stop offset="60%" stop-color="#E9EDE7"/><stop offset="100%" stop-color="#DFE4DC"/>
+    </linearGradient>
+    <linearGradient id="aur" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E4D7AE"/><stop offset="50%" stop-color="#C2A15E"/><stop offset="100%" stop-color="#EFE6CC"/>
+    </linearGradient>
+    <linearGradient id="aur2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#CFD8C8" stop-opacity=".2"/><stop offset="100%" stop-color="#D8C89A" stop-opacity=".7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g5)"/>
+  <g fill="none" stroke="url(#aur)" stroke-linecap="round">
+    <path d="M60 210 C220 120 340 260 500 180 S700 120 760 190" stroke-width="10" opacity=".25"/>
+    <path d="M60 240 C220 150 340 290 500 210 S700 150 760 220" stroke-width="5" opacity=".55"/>
+    <path d="M60 270 C220 180 340 320 500 240 S700 180 760 250" stroke-width="2.4" opacity=".9"/>
+  </g>
+  <g fill="none" stroke="url(#aur2)" stroke-linecap="round">
+    <path d="M60 320 C240 250 360 380 520 310 S700 260 760 320" stroke-width="6" opacity=".6"/>
+    <path d="M60 360 C240 300 360 420 520 350 S700 300 760 360" stroke-width="2" opacity=".8"/>
+  </g>
+  <g>
+    <path d="M330 470 A150 150 0 0 1 630 470 Z" fill="#F7F8F4" stroke="#C4CDBB" stroke-width="1.8"/>
+    <path d="M330 470 A150 150 0 0 1 630 470 Z" fill="none" stroke="#C2A15E" stroke-width="1" opacity=".35"/>
+    <rect x="392" y="386" width="176" height="84" rx="10" fill="#FFFFFF" stroke="#CBD2C2" stroke-width="1.4"/>
+    <circle cx="480" cy="404" r="26" fill="#EFF2EB" stroke="url(#aur)" stroke-width="2"/>
+    <circle cx="480" cy="404" r="10" fill="#C2A15E" opacity=".8"/>
+    <g stroke="#BFC8B6" stroke-width="1" opacity=".8">
+      <line x1="404" y1="448" x2="556" y2="448"/>
+      <line x1="404" y1="458" x2="520" y2="458"/>
+    </g>
+    <rect x="470" y="470" width="20" height="34" fill="#E7EBE3"/>
+    <rect x="440" y="504" width="80" height="12" rx="6" fill="#E2E6DB"/>
+  </g>
+  <g stroke="#C2A15E" stroke-width="1" opacity=".3">
+    <path d="M0 500 H800"/>
+  </g>
+</svg>

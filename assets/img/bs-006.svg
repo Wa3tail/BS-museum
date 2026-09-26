@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="白垩琥珀层">
+  <defs>
+    <linearGradient id="g6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAFAF6"/><stop offset="100%" stop-color="#E7EBE3"/>
+    </linearGradient>
+    <linearGradient id="amb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0DFB2"/><stop offset="45%" stop-color="#D9BE7C"/><stop offset="100%" stop-color="#C0A05C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g6)"/>
+  <g>
+    <rect x="150" y="140" width="500" height="330" rx="8" fill="#F4F6F1" stroke="#C9D0C1" stroke-width="1.6"/>
+    <g opacity=".9">
+      <rect x="150" y="150" width="500" height="34" fill="url(#amb)" opacity=".55"/>
+      <rect x="150" y="192" width="500" height="26" fill="url(#amb)" opacity=".75"/>
+      <rect x="150" y="226" width="500" height="46" fill="url(#amb)" opacity=".95"/>
+      <rect x="150" y="280" width="500" height="30" fill="url(#amb)" opacity=".6"/>
+      <rect x="150" y="318" width="500" height="58" fill="url(#amb)" opacity=".85"/>
+      <rect x="150" y="384" width="500" height="24" fill="url(#amb)" opacity=".45"/>
+      <rect x="150" y="416" width="500" height="44" fill="url(#amb)" opacity=".7"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="1" opacity=".45">
+      <path d="M150 184 H650"/><path d="M150 272 H650"/><path d="M150 376 H650"/>
+    </g>
+    <!-- inclusions -->
+    <g fill="#8A6A2E" opacity=".8">
+      <ellipse cx="286" cy="248" rx="16" ry="7"/>
+      <ellipse cx="286" cy="248" rx="6" ry="3" fill="#5E4718"/>
+      <path d="M262 240 l-14 -8 M262 252 l-14 8" stroke="#8A6A2E" stroke-width="1.6"/>
+      <path d="M310 240 l14 -8 M310 252 l14 8" stroke="#8A6A2E" stroke-width="1.6"/>
+    </g>
+    <g fill="#8A6A2E" opacity=".75">
+      <circle cx="470" cy="342" r="9"/>
+      <path d="M470 333 v18 M461 342 h18" stroke="#F0DFB2" stroke-width="1.2"/>
+      <path d="M462 328 l-10 -8 M478 328 l10 -8 M462 356 l-10 8 M478 356 l10 8" stroke="#8A6A2E" stroke-width="1.6"/>
+    </g>
+    <g fill="#8A6A2E" opacity=".6">
+      <circle cx="382" cy="196" r="4"/><circle cx="524" cy="212" r="3"/><circle cx="330" cy="430" r="4"/>
+      <circle cx="560" cy="428" r="3.4"/><circle cx="236" cy="330" r="3"/>
+    </g>
+  </g>
+  <rect x="120" y="470" width="560" height="10" rx="5" fill="#E2E6DB"/>
+  <g stroke="#C0A05C" stroke-width="1.2" opacity=".45"><path d="M170 528 H630"/></g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="银脉矿核">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAFAF6"/><stop offset="100%" stop-color="#E6EAE2"/>
+    </linearGradient>
+    <linearGradient id="gold2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E0CFA4"/><stop offset="50%" stop-color="#C0A05C"/><stop offset="100%" stop-color="#E6D9B4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g2)"/>
+  <g opacity=".28" stroke="#B9C2B1" stroke-width="1" fill="none">
+    <path d="M0 180 H800"/><path d="M0 420 H800"/>
+  </g>
+  <g>
+    <rect x="250" y="120" width="300" height="400" rx="14" fill="#EDEFE7" stroke="#C9D0C1" stroke-width="1.6"/>
+    <path d="M250 120 h300 v14 h-300 z" fill="#F6F7F2"/>
+    <g stroke="url(#gold2)" stroke-linecap="round" fill="none">
+      <path d="M268 150 C320 210 300 260 268 320 C240 372 320 430 300 500" stroke-width="6" opacity=".95"/>
+      <path d="M330 140 C360 200 340 250 372 306 C400 356 350 414 396 494" stroke-width="4" opacity=".8"/>
+      <path d="M420 132 C452 196 420 258 452 316 C482 372 430 440 470 506" stroke-width="2.6" opacity=".6"/>
+      <path d="M492 148 C512 208 486 262 512 322 C536 380 496 436 526 498" stroke-width="1.6" opacity=".45"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="1" opacity=".55" fill="none">
+      <path d="M268 150 C320 210 300 260 268 320 C240 372 320 430 300 500"/>
+    </g>
+    <g fill="#B9C2B1" opacity=".5">
+      <circle cx="360" cy="180" r="2.4"/><circle cx="470" cy="230" r="2"/><circle cx="320" cy="360" r="2.6"/>
+      <circle cx="430" cy="410" r="2.2"/><circle cx="500" cy="330" r="2"/>
+    </g>
+  </g>
+  <rect x="180" y="520" width="440" height="10" rx="5" fill="#E2E6DB"/>
+  <g stroke="#C0A05C" stroke-width="1.2" opacity=".5">
+    <path d="M200 556 H600"/>
+  </g>
+</svg>

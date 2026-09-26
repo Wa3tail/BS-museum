@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" width="1600" height="620" role="img" aria-label="北山博物馆">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBFBF8"/>
+      <stop offset="55%" stop-color="#F1F3EE"/>
+      <stop offset="100%" stop-color="#E7EBE3"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDEEE7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D9C08A"/>
+      <stop offset="50%" stop-color="#C2A15E"/>
+      <stop offset="100%" stop-color="#E3D2A8"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#F6EEDA" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#F6EEDA" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#C7CFC2" opacity=".55"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="620" fill="url(#sky)"/>
+  <rect width="1600" height="620" fill="url(#dots)"/>
+  <circle cx="800" cy="215" r="330" fill="url(#halo)"/>
+
+  <!-- sun ring -->
+  <circle cx="800" cy="215" r="96" fill="none" stroke="url(#gold)" stroke-width="2.2" opacity=".9"/>
+  <circle cx="800" cy="215" r="128" fill="none" stroke="#C2A15E" stroke-width="1" opacity=".35"/>
+  <circle cx="800" cy="215" r="160" fill="none" stroke="#C2A15E" stroke-width="1" opacity=".18"/>
+
+  <!-- far ridges -->
+  <path d="M0 430 L230 330 L360 392 L520 300 L700 402 L860 336 L1040 420 L1230 322 L1400 404 L1600 352 L1600 620 L0 620 Z" fill="#E4E8DF"/>
+  <path d="M0 470 L200 404 L400 452 L600 386 L820 466 L1010 412 L1220 470 L1420 420 L1600 462 L1600 620 L0 620 Z" fill="#DAE0D4"/>
+
+  <!-- museum shell -->
+  <g>
+    <path d="M470 500 Q800 356 1130 500 Z" fill="url(#shell)" stroke="#CFD6C8" stroke-width="1.6"/>
+    <path d="M470 500 Q800 356 1130 500" fill="none" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M560 500 Q800 402 1040 500" fill="none" stroke="#C2A15E" stroke-width="1" opacity=".45"/>
+    <path d="M650 500 Q800 448 950 500" fill="none" stroke="#C2A15E" stroke-width="1" opacity=".3"/>
+    <rect x="470" y="500" width="660" height="8" rx="4" fill="#EFEFE9"/>
+    <rect x="560" y="508" width="480" height="60" fill="#F5F6F1" stroke="#DFE3D9" stroke-width="1.2"/>
+    <g stroke="#C2A15E" stroke-width="1.1" opacity=".6">
+      <line x1="620" y1="508" x2="620" y2="568"/>
+      <line x1="700" y1="508" x2="700" y2="568"/>
+      <line x1="780" y1="508" x2="780" y2="568"/>
+      <line x1="860" y1="508" x2="860" y2="568"/>
+      <line x1="940" y1="508" x2="940" y2="568"/>
+    </g>
+  </g>
+
+  <!-- fore tundra -->
+  <path d="M0 560 Q300 528 620 562 T1250 548 T1600 566 L1600 620 L0 620 Z" fill="#E9EDE3"/>
+  <g stroke="#BFC8B6" stroke-width="1" opacity=".8" fill="none">
+    <path d="M60 592 q40 -14 82 0 t82 0"/>
+    <path d="M1180 600 q40 -14 82 0 t82 0"/>
+  </g>
+
+  <!-- mist bands -->
+  <rect x="0" y="452" width="1600" height="34" fill="url(#mist)"/>
+  <rect x="0" y="516" width="1600" height="26" fill="url(#mist)" opacity=".7"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="苔原回声">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBFBF7"/><stop offset="100%" stop-color="#E9EDE6"/>
+    </linearGradient>
+    <linearGradient id="gold1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D8C08C"/><stop offset="100%" stop-color="#BFA05C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g1)"/>
+  <g fill="none" stroke="url(#gold1)" stroke-linecap="round">
+    <path d="M120 330 C240 220 300 420 420 300 S620 200 700 300" stroke-width="2.6" opacity=".95"/>
+    <path d="M120 366 C240 256 300 456 420 336 S620 236 700 336" stroke-width="2" opacity=".7"/>
+    <path d="M120 402 C240 292 300 492 420 372 S620 272 700 372" stroke-width="1.6" opacity=".5"/>
+    <path d="M120 438 C240 328 300 528 420 408 S620 308 700 408" stroke-width="1.2" opacity=".33"/>
+    <path d="M120 474 C240 364 300 564 420 444 S620 344 700 444" stroke-width="1" opacity=".22"/>
+  </g>
+  <g fill="#BFA05C" opacity=".55">
+    <circle cx="200" cy="330" r="3"/><circle cx="276" cy="286" r="3"/><circle cx="352" cy="352" r="3"/>
+    <circle cx="428" cy="300" r="3"/><circle cx="504" cy="248" r="3"/><circle cx="580" cy="292" r="3"/>
+    <circle cx="656" cy="336" r="3"/>
+  </g>
+  <g stroke="#C6D0BE" stroke-width="1" fill="none" opacity=".8">
+    <path d="M60 520 H740"/><path d="M60 544 H740" opacity=".6"/><path d="M60 566 H740" opacity=".4"/>
+  </g>
+  <g fill="#FFFFFF" opacity=".7">
+    <rect x="60" y="120" width="120" height="6" rx="3"/>
+    <rect x="60" y="138" width="72" height="6" rx="3" opacity=".6"/>
+  </g>
+  <circle cx="700" cy="120" r="34" fill="none" stroke="url(#gold1)" stroke-width="1.4" opacity=".8"/>
+  <circle cx="700" cy="120" r="8" fill="#BFA05C" opacity=".7"/>
+</svg>

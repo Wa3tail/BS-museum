@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>身份认证 · 北山博物馆虚拟导览</title>
+<link rel="icon" href="assets/img/bs-001.svg" />
+<link rel="stylesheet" href="assets/css/public.css?v=6" />
+<style>
+  .auth-wrap { min-height: calc(100vh - 72px); display: grid; place-items: center; padding: 48px 20px; }
+  .auth-card { width: min(460px, 100%); }
+  .tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .tabs button {
+    border: none; background: transparent; padding: 10px 14px; cursor: pointer;
+    font-size: 14.5px; color: var(--ink-dim); border-bottom: 2px solid transparent;
+  }
+  .tabs button.is-on { color: var(--gold-deep); border-bottom-color: var(--gold); font-weight: 600; }
+  .form-pane { display: none; }
+  .form-pane.is-on { display: block; }
+  .form-pane .f { margin-bottom: 13px; }
+  .form-pane label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink-dim); margin-bottom: 6px; }
+  .form-pane input {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+    background: var(--surface-soft); outline: none;
+  }
+  .form-pane input:focus { border-color: var(--gold); background: #fff; }
+  .row-inline { display: flex; gap: 10px; }
+  .row-inline input { flex: 1; }
+  .link-btn { background: none; border: none; color: var(--gold-deep); cursor: pointer; font-size: 13px; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+  .status-card { border: 1px dashed var(--seal); background: var(--surface-soft); border-radius: var(--radius-sm); padding: 18px; }
+  .status-card .who { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--ink-dim); }
+  .mono-note { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; color: var(--ink-dim); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">BS</span>
+      <span class="brand-text"><b>北山博物馆</b><small>BEISHAN MUSEUM</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">馆藏一览</a>
+      <a href="museum.html">博物馆介绍</a>
+      <a href="staff.html">楼层管理员</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost btn-sm" href="index.html">返回展廊</a>
+    </div>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="panel">
+      <div class="section-head" style="margin-bottom:18px">
+        <div>
+          <div class="sub">IDENTITY VERIFICATION</div>
+          <h2 id="authTitle" style="font-size:22px">身份认证</h2>
+        </div>
+      </div>
+
+      <!-- 未登录：登录表单 -->
+      <div id="authForms">
+        <div class="tabs">
+          <button type="button" class="is-on" data-tab="password">密码登录</button>
+          <button type="button" data-tab="otp">邮箱验证码</button>
+          <button type="button" data-tab="signup">注册</button>
+        </div>
+
+        <form class="form-pane is-on" id="panePassword" autocomplete="on">
+          <div class="f"><label for="pwEmail">邮箱</label><input id="pwEmail" type="email" placeholder="keeper@beishan-museum.example" required /></div>
+          <div class="f"><label for="pwPass">密码</label><input id="pwPass" type="password" placeholder="登录密码" required /></div>
+          <button class="btn btn-gold" type="submit" style="width:100%">登录</button>
+          <p style="margin:12px 0 0"><button class="link-btn" type="button" id="forgotBtn">忘记密码？</button></p>
+          <div id="pwMsg"></div>
+        </form>
+
+        <form class="form-pane" id="paneOtp">
+          <div class="f"><label for="otpEmail">邮箱</label><input id="otpEmail" type="email" placeholder="keeper@beishan-museum.example" required /></div>
+          <div class="f">
+            <label for="otpCode">验证码</label>
+            <div class="row-inline">
+              <input id="otpCode" type="text" placeholder="6 位验证码" />
+              <button class="btn btn-sm" type="button" id="sendOtpBtn">获取验证码</button>
+            </div>
+          </div>
+          <button class="btn btn-gold" type="submit" style="width:100%">登录 / 注册</button>
+          <div id="otpMsg"></div>
+        </form>
+
+        <form class="form-pane" id="paneSignup">
+          <div class="f"><label for="suEmail">邮箱</label><input id="suEmail" type="email" placeholder="keeper@beishan-museum.example" required /></div>
+          <div class="f">
+            <label for="suCode">验证码</label>
+            <div class="row-inline">
+              <input id="suCode" type="text" placeholder="6 位验证码" />
+              <button class="btn btn-sm" type="button" id="sendSuBtn">获取验证码</button>
+            </div>
+          </div>
+          <div class="f"><label for="suPass">设置密码</label><input id="suPass" type="password" placeholder="至少 8 位" required /></div>
+          <button class="btn btn-gold" type="submit" style="width:100%">创建账号</button>
+          <div id="suMsg"></div>
+        </form>
+
+        <form class="form-pane" id="paneReset">
+          <div class="f"><label for="rsEmail">邮箱</label><input id="rsEmail" type="email" required /></div>
+          <div class="f"><label for="rsCode">验证码</label>
+            <div class="row-inline">
+              <input id="rsCode" type="text" placeholder="邮件中的验证码" />
+              <button class="btn btn-sm" type="button" id="sendRsBtn">发送验证码</button>
+            </div>
+          </div>
+          <div class="f"><label for="rsPass">新密码</label><input id="rsPass" type="password" /></div>
+          <button class="btn btn-gold" type="submit" style="width:100%">重置密码</button>
+          <p style="margin:12px 0 0"><button class="link-btn" type="button" id="backLoginBtn">返回登录</button></p>
+          <div id="rsMsg"></div>
+        </form>
+      </div>
+
+      <!-- 已登录：身份状态 -->
+      <div id="authStatus" style="display:none">
+        <div class="status-card">
+          <div class="who" id="whoLine">—</div>
+          <p id="roleLine" style="margin:8px 0 14px;font-size:14px"></p>
+          <div id="adminActions" style="display:none">
+            <a class="btn btn-gold" href="admin.html" style="width:100%;justify-content:center">进入内部管理终端</a>
+          </div>
+          <div id="guestActions">
+            <div style="text-align:right;margin-bottom:16px"><span class="ghost-gate"><a href="inner.html" tabindex="-1" aria-hidden="true">内廊</a></span></div>
+            <label for="claimCode" style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-dim);margin-bottom:6px">管理员授权密钥</label>
+            <div class="row-inline">
+              <input id="claimCode" type="text" placeholder="如 BEISHAN-ADMIN-2026" style="flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface-soft)" />
+              <button class="btn btn-sm" type="button" id="claimBtn">申请权限</button>
+            </div>
+            <p class="mono-note" style="margin:10px 0 0">持有馆务办公室发放的授权密钥即可升级为管理员。</p>
+          </div>
+          <div style="margin-top:16px"><button class="btn btn-sm" type="button" id="signOutBtn">退出登录</button></div>
+        </div>
+        <div id="statusMsg"></div>
+      </div>
+    </div>
+    <p class="mono-note" style="text-align:center;margin-top:16px">公开展廊无需登录 · 内部终端仅限管理员</p>
+  </div>
+</div>
+
+<script src="assets/vendor/workbuddy-cloud-sdk.global.js"></script>
+<script src="assets/js/core.js?v=6"></script>
+<script src="assets/js/login.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>内廊 · 北山博物馆</title>
+<meta name="description" content="北山博物馆内廊：封存档案与人事秘档的分级调阅视图。" />
+<link rel="icon" href="assets/img/sealed.svg" />
+<link rel="stylesheet" href="assets/css/inner.css?v=6" />
+</head>
+<body>
+
+<div class="starfield"></div>
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+<div class="grid-lines"></div>
+<div class="vignette"></div>
+
+<!-- 身份校验门 -->
+<div class="in-gate" id="gate">
+  <div class="gate-box">
+    <h1>INNER WING / 内廊</h1>
+    <div class="gate-rule"></div>
+    <p id="gateMsg">正在核验身份…</p>
+    <div id="gateOps" style="display:none;display:grid;gap:10px">
+      <a class="btn btn-gold" href="login.html?next=inner.html">前往身份认证</a>
+      <a class="btn" href="index.html">返回公开展廊</a>
+    </div>
+  </div>
+</div>
+
+<!-- 内廊主体 -->
+<div class="in-shell" id="shell" style="display:none">
+
+  <div class="in-bar">
+    <div class="inner">
+      <div class="in-brand">
+        <span class="mark">BS</span>
+        <div>
+          <b>北山博物馆 · 内廊</b>
+          <small>INNER WING / CLASSIFIED VIEW</small>
+        </div>
+      </div>
+      <div class="in-bar-right">
+        <span class="level-chip" id="levelChip"><span class="dot"></span><span id="levelText">LV.0 未认证</span></span>
+        <a class="btn btn-sm" href="admin.html">管理终端</a>
+        <a class="btn btn-sm" href="index.html">公开展廊</a>
+        <button class="btn btn-sm" id="signOutBtn" type="button">退出</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="in-hero">
+    <span class="tag">INNER WING — RESTRICTED VIEW</span>
+    <h1>内廊</h1>
+    <p>内廊收录全部馆藏条目及其附加的受限档案，以及馆内值守人员的内部人事秘档。每一条档案按密级分层呈现——你只能看到当前权限等级所能覆盖的那一部分。</p>
+  </header>
+
+  <div class="clearance-bar">
+    <span class="label">权限密钥 / CLEARANCE KEY</span>
+    <input id="keyInput" type="password" placeholder="如 BS-4-ARCHIVIST" autocomplete="off" />
+    <button class="btn btn-gold btn-sm" id="keyBtn" type="button">提交认证</button>
+    <button class="btn btn-sm" id="keyClear" type="button">重置等级</button>
+    <div class="clr-msg" id="clrMsg"></div>
+  </div>
+
+  <div class="in-tabs">
+    <button type="button" class="is-on" data-pane="paneRecords">封存档案 / SEALED RECORDS</button>
+    <button type="button" data-pane="paneKeepers">人事秘档 / KEEPER DOSSIERS</button>
+  </div>
+
+  <main class="in-main">
+
+    <section class="tab-pane is-on" id="paneRecords">
+      <div class="pane-head">
+        <div>
+          <h2>SEALED RECORDS / 封存档案</h2>
+          <div class="sub">全部馆藏条目 · 每条下方附带该条目的受限档案槽，按权限等级解锁</div>
+        </div>
+      </div>
+      <div id="recordList">
+        <div class="skeleton" style="height:220px;margin-bottom:20px"></div>
+        <div class="skeleton" style="height:220px;margin-bottom:20px"></div>
+      </div>
+    </section>
+
+    <section class="tab-pane" id="paneKeepers">
+      <div class="pane-head">
+        <div>
+          <h2>KEEPER DOSSIERS / 人事秘档</h2>
+          <div class="sub">值守人员的身份、学历、状况与秘闻 · 逐字段按密级解锁</div>
+        </div>
+      </div>
+      <div class="dossier-grid" id="dossierGrid"></div>
+    </section>
+
+  </main>
+
+  <div class="in-foot">
+    北山博物馆内廊 · 所有调阅均记入访问日志 · 越权尝试将被记录
+  </div>
+</div>
+
+<script src="assets/vendor/workbuddy-cloud-sdk.global.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/js/core.js?v=6"></script>
+<script src="assets/js/inner.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>内部管理终端 · 北山博物馆</title>
+<link rel="icon" href="assets/img/sealed.svg" />
+<link rel="stylesheet" href="assets/css/admin.css?v=6" />
+</head>
+<body>
+
+<!-- 身份校验门 -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="hazard"></div>
+    <h1>RESTRICTED TERMINAL</h1>
+    <p id="gateMsg">正在核验身份…</p>
+    <div id="gateOps" style="display:none">
+      <a class="btn btn-gold" href="login.html?next=admin.html" style="width:100%">前往身份认证</a>
+      <a class="btn" href="index.html" style="width:100%;margin-top:10px">返回公开展廊</a>
+    </div>
+  </div>
+</div>
+
+<!-- 终端主体 -->
+<div class="terminal" id="terminal" style="display:none">
+  <div class="term-bar">
+    <div class="inner">
+      <div class="term-brand">
+        <span class="seal">BS</span>
+        <div>
+          <b>北山博物馆 · 内部管理终端</b>
+          <small>RESTRICTED ACCESS — LEVEL 04</small>
+        </div>
+      </div>
+      <div class="term-status">
+        <span id="termUid">—</span>
+        <span><span class="dot"></span> SECURE LINK</span>
+        <a class="btn btn-sm" href="index.html" target="_blank" rel="noopener">查看前台</a>
+        <button class="btn btn-sm" id="termSignOut" type="button">退出</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="term-body">
+
+    <!-- 侧栏导航 -->
+    <aside class="term-nav" id="termNav">
+      <div class="nav-group-title">CONTENT / 内容</div>
+      <button type="button" class="nav-item is-on" data-pane="paneHome"><span class="g">◈</span><span class="t">总览</span></button>
+      <button type="button" class="nav-item" data-pane="paneExhibits"><span class="g">▤</span><span class="t">馆藏档案</span><span class="c" data-count="exhibits">0</span></button>
+      <button type="button" class="nav-item" data-pane="paneDocs"><span class="g">▥</span><span class="t">文档与日志</span><span class="c" data-count="docs">0</span></button>
+      <button type="button" class="nav-item" data-pane="paneClassified"><span class="g">▧</span><span class="t">受限档案</span><span class="c" data-count="classified">0</span></button>
+      <button type="button" class="nav-item" data-pane="panePages"><span class="g">▦</span><span class="t">页面内容</span></button>
+
+      <div class="nav-group-title">PERSONNEL / 人事</div>
+      <button type="button" class="nav-item" data-pane="paneStaff"><span class="g">☰</span><span class="t">楼层人员</span><span class="c" data-count="staff">0</span></button>
+      <button type="button" class="nav-item" data-pane="paneDossiers"><span class="g">✥</span><span class="t">人事秘档</span><span class="c" data-count="dossiers">0</span></button>
+
+      <div class="nav-group-title">SECURITY / 安全</div>
+      <button type="button" class="nav-item" data-pane="paneKeys"><span class="g">⌘</span><span class="t">权限密钥</span><span class="c" data-count="keys">0</span></button>
+      <button type="button" class="nav-item" data-pane="paneLog"><span class="g">◎</span><span class="t">访问日志</span></button>
+
+      <div class="nav-foot">
+        <div class="nav-tip">Ctrl / ⌘ + S 保存当前编辑器</div>
+      </div>
+    </aside>
+
+    <main class="term-main">
+
+      <!-- 总览 -->
+      <section class="tab-pane is-on" id="paneHome">
+        <div class="pane-head">
+          <div>
+            <h2>OVERVIEW / 总览</h2>
+            <div class="hint">当前账套的内容与安全概况</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-sm btn-gold" data-quick="exNew" type="button">+ 展品</button>
+            <button class="btn btn-sm" data-quick="docNew" type="button">+ 文档</button>
+            <button class="btn btn-sm" data-quick="clsNew" type="button">+ 受限档案</button>
+            <button class="btn btn-sm" data-quick="stNew" type="button">+ 人员</button>
+            <button class="btn btn-sm" data-quick="dsNew" type="button">+ 秘档</button>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <button class="stat" type="button" data-pane="paneExhibits"><b data-stat="exhibits">0</b><span>馆藏条目</span></button>
+          <button class="stat" type="button" data-pane="paneDocs"><b data-stat="docs">0</b><span>文档与日志</span></button>
+          <button class="stat" type="button" data-pane="paneClassified"><b data-stat="classified">0</b><span>受限档案</span></button>
+          <button class="stat" type="button" data-pane="paneStaff"><b data-stat="staff">0</b><span>楼层人员</span></button>
+          <button class="stat" type="button" data-pane="paneDossiers"><b data-stat="dossiers">0</b><span>人事秘档</span></button>
+          <button class="stat" type="button" data-pane="paneKeys"><b data-stat="keys">0</b><span>分级密钥</span></button>
+        </div>
+
+        <div class="grid-2">
+          <div class="box">
+            <h3>最近访问 / RECENT ACCESS</h3>
+            <table class="table" id="homeLogTable"></table>
+          </div>
+          <div class="box">
+            <h3>操作提示 / TIPS</h3>
+            <ul class="tips">
+              <li>左侧侧栏切换模块，切换位置会自动记忆。</li>
+              <li>每个编辑器支持 <b>Ctrl / ⌘ + S</b> 保存，底部状态条会标注是否有未保存改动。</li>
+              <li>正文均为 Markdown，编辑框上方工具栏可一键插入标题、列表、表格等语法。</li>
+              <li>图片可直接拖入虚线上传区，或点击选择文件；配图可多选。</li>
+              <li>「人事秘档」中的证件照按 <b>一寸 295×413</b> 比例裁切，在前台内廊以完整比例呈现。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 馆藏档案 -->
+      <section class="tab-pane" id="paneExhibits">
+        <div class="pane-head">
+          <div>
+            <h2>EXHIBITS / 馆藏档案</h2>
+            <div class="hint">展品条目、展示图与文字档案（Markdown）</div>
+          </div>
+          <div class="toolbar">
+            <input id="exSearch" placeholder="检索编号 / 名称 / 标签" />
+            <button class="btn btn-gold btn-sm" id="exNew" type="button">+ 新建条目</button>
+          </div>
+        </div>
+
+        <div class="box" id="exEditor" style="display:none">
+          <h3 id="exEditorTitle">新建展品条目</h3>
+          <div class="f-row">
+            <div class="f"><label>编号</label><input id="exCode" placeholder="BS-009" /></div>
+            <div class="f"><label>名称</label><input id="exName" placeholder="展品名称" /></div>
+            <div class="f"><label>类别</label><input id="exCategory" placeholder="如 生态声学装置" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>楼层</label><input id="exFloor" placeholder="F1" /></div>
+            <div class="f"><label>年代</label><input id="exEra" placeholder="形成年代" /></div>
+            <div class="f"><label>来源</label><input id="exOrigin" placeholder="采集地 / 出土地" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>状态</label>
+              <select id="exStatus"><option value="public">public · 公开陈列</option><option value="sealed">sealed · 封存</option><option value="draft">draft · 草稿</option></select>
+            </div>
+            <div class="f"><label>密级 (1-5)</label><input id="exClearance" type="number" min="1" max="5" value="1" /></div>
+            <div class="f"><label>排序</label><input id="exSort" type="number" value="100" /></div>
+          </div>
+          <div class="f"><label>标签（逗号分隔）</label><input id="exTags" placeholder="声景,冻土,装置" /></div>
+          <div class="f"><label>概览摘要</label><input id="exSummary" placeholder="一句话概览" /></div>
+          <div class="f">
+            <label>展示图（拖入文件或点击选择 · 自动压缩并归档云端存储）</label>
+            <div class="dropzone" data-drop="exImage">
+              <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+                <img class="thumb" id="exThumb" src="assets/img/sealed.svg" alt="" />
+                <div>
+                  <div style="font-family:var(--mono);font-size:12px;color:var(--ink-dim)">将图片拖到此处，或点击选择文件</div>
+                  <div class="hint" id="exImageHint"></div>
+                </div>
+              </div>
+              <input type="file" id="exImage" accept="image/*" />
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="f">
+              <label>正文（Markdown）</label>
+              <div class="md-tools" data-target="exContent">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="h3">H3</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="quote">引用</button>
+                <button type="button" data-md="table">表格</button>
+                <button type="button" data-md="link">链接</button>
+                <button type="button" data-md="code">代码</button>
+                <button type="button" data-md="hr">分隔</button>
+              </div>
+              <textarea id="exContent" placeholder="## 展品概述&#10;…"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="exPreview"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="exSave" type="button">保存条目</button>
+            <button class="btn" id="exCancel" type="button">关闭</button>
+            <span class="unsaved" id="exDirty">无修改</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>条目列表</h3>
+          <div class="list" id="exList"><div class="empty">加载中…</div></div>
+        </div>
+      </section>
+
+      <!-- 文档与日志 -->
+      <section class="tab-pane" id="paneDocs">
+        <div class="pane-head">
+          <div>
+            <h2>DOCUMENTS / 文档与日志</h2>
+            <div class="hint">日志、报告、附件与配图（均上传至云端存储）</div>
+          </div>
+          <div class="toolbar">
+            <input id="docSearch" placeholder="检索标题 / 关联编号" />
+            <button class="btn btn-gold btn-sm" id="docNew" type="button">+ 新建文档</button>
+          </div>
+        </div>
+
+        <div class="box" id="docEditor" style="display:none">
+          <h3 id="docEditorTitle">新建文档</h3>
+          <div class="f-row">
+            <div class="f"><label>标题</label><input id="docTitle" placeholder="文档标题" /></div>
+            <div class="f"><label>类型</label>
+              <select id="docType"><option value="log">log · 日志</option><option value="report">report · 报告</option><option value="memo">memo · 备忘</option></select>
+            </div>
+            <div class="f"><label>关联展品</label><select id="docExhibit"></select></div>
+            <div class="f"><label>密级</label><input id="docClearance" type="number" min="1" max="5" value="1" /></div>
+          </div>
+          <div class="f">
+            <label>附件（.md / .txt 内容会自动填入正文，其他格式仅归档）</label>
+            <div class="dropzone" data-drop="docFile">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-dim)">将文件拖到此处，或点击选择</div>
+              <div class="hint" id="docFileHint"></div>
+              <input type="file" id="docFile" />
+            </div>
+          </div>
+          <div class="f">
+            <label>配图（可多选 · 拖入或多选文件）</label>
+            <div class="dropzone" data-drop="docImages">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-dim)">将图片拖到此处，或点击选择（可多选）</div>
+              <div class="hint" id="docShotHint"></div>
+              <input type="file" id="docImages" accept="image/*" multiple />
+            </div>
+            <div class="shot-grid" id="docShotGrid"></div>
+          </div>
+          <div class="grid-2">
+            <div class="f">
+              <label>正文（Markdown）</label>
+              <div class="md-tools" data-target="docContent">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="quote">引用</button>
+                <button type="button" data-md="table">表格</button>
+                <button type="button" data-md="img">插入配图</button>
+                <button type="button" data-md="code">代码</button>
+                <button type="button" data-md="hr">分隔</button>
+              </div>
+              <textarea id="docContent" placeholder="## 日志&#10;…"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="docPreview"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="docSave" type="button">保存文档</button>
+            <button class="btn" id="docCancel" type="button">关闭</button>
+            <span class="unsaved" id="docDirty">无修改</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>文档列表</h3>
+          <div class="list" id="docList"><div class="empty">加载中…</div></div>
+        </div>
+      </section>
+
+      <!-- 受限档案 -->
+      <section class="tab-pane" id="paneClassified">
+        <div class="pane-head">
+          <div>
+            <h2>CLASSIFIED / 受限档案</h2>
+            <div class="hint">访客需持有效权限密钥，经校验后在内廊解锁</div>
+          </div>
+          <div class="toolbar">
+            <input id="clsSearch" placeholder="检索标签 / 摘要" />
+            <button class="btn btn-gold btn-sm" id="clsNew" type="button">+ 新建受限档案</button>
+          </div>
+        </div>
+
+        <div class="box classified" id="clsEditor" style="display:none">
+          <span class="stamp">CLASSIFIED ENTRY</span>
+          <h3 id="clsEditorTitle">新建受限档案</h3>
+          <div class="f-row">
+            <div class="f"><label>关联类型</label>
+              <select id="clsRefType"><option value="exhibit">exhibit · 展品</option><option value="document">document · 文档</option></select>
+            </div>
+            <div class="f"><label>关联条目</label><select id="clsRefId"></select></div>
+            <div class="f"><label>所需权限等级</label><input id="clsLevel" type="number" min="1" max="5" value="3" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>标签</label><input id="clsLabel" placeholder="四级权限 · 星图残片" /></div>
+            <div class="f"><label>摘要</label><input id="clsSummary" placeholder="一句话摘要" /></div>
+          </div>
+          <div class="f">
+            <label>配图（可多选 · 拖入或多选文件）</label>
+            <div class="dropzone" data-drop="clsImages">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-dim)">将图片拖到此处，或点击选择（可多选）</div>
+              <div class="hint" id="clsShotHint"></div>
+              <input type="file" id="clsImages" accept="image/*" multiple />
+            </div>
+            <div class="shot-grid" id="clsShotGrid"></div>
+          </div>
+          <div class="grid-2">
+            <div class="f">
+              <label>受限正文（Markdown）</label>
+              <div class="md-tools" data-target="clsContent">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="quote">引用</button>
+                <button type="button" data-md="table">表格</button>
+                <button type="button" data-md="img">插入配图</button>
+                <button type="button" data-md="code">代码</button>
+                <button type="button" data-md="hr">分隔</button>
+              </div>
+              <textarea id="clsContent" placeholder="## 受限档案&#10;…"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="clsPreview"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="clsSave" type="button">保存档案</button>
+            <button class="btn" id="clsCancel" type="button">关闭</button>
+            <span class="unsaved" id="clsDirty">无修改</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>档案列表</h3>
+          <div class="list" id="clsList"><div class="empty">加载中…</div></div>
+        </div>
+      </section>
+
+      <!-- 权限密钥 -->
+      <section class="tab-pane" id="paneKeys">
+        <div class="pane-head">
+          <div>
+            <h2>CLEARANCE / 权限密钥</h2>
+            <div class="hint">分级密钥与管理员邀请密钥</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="box">
+            <h3>新建分级密钥</h3>
+            <div class="f-row">
+              <div class="f"><label>密钥</label><input id="keyCode" placeholder="BS-4-ARCHIVIST" /></div>
+              <div class="f"><label>等级</label><input id="keyLevel" type="number" min="1" max="5" value="3" /></div>
+            </div>
+            <div class="f"><label>标签</label><input id="keyLabel" placeholder="四级权限 · 档案主管" /></div>
+            <div class="f"><label>备注</label><input id="keyNote" placeholder="用途说明" /></div>
+            <button class="btn btn-gold" id="keySave" type="button">保存密钥</button>
+          </div>
+
+          <div class="box">
+            <h3>管理员邀请密钥</h3>
+            <p style="color:var(--ink-dim);font-size:13px;margin:0 0 12px">生成后交给新管理员，对方登录并提交该密钥即可获得管理员权限。</p>
+            <div class="f"><label>邀请密钥（至少 6 位）</label><input id="adminCode" placeholder="BEISHAN-ADMIN-2027" /></div>
+            <button class="btn btn-gold" id="adminCodeSave" type="button">生成邀请密钥</button>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>密钥列表</h3>
+          <table class="table" id="keyTable"></table>
+        </div>
+      </section>
+
+      <!-- 访问日志 -->
+      <section class="tab-pane" id="paneLog">
+        <div class="pane-head">
+          <div>
+            <h2>ACCESS LOG / 访问日志</h2>
+            <div class="hint">受限档案的解锁尝试记录</div>
+          </div>
+          <div class="toolbar">
+            <input id="logSearch" placeholder="检索 UID / 密钥 / 备注" />
+            <button class="btn btn-sm" id="logRefresh" type="button">刷新</button>
+          </div>
+        </div>
+        <div class="box">
+          <table class="table" id="logTable"></table>
+        </div>
+      </section>
+
+      <!-- 页面内容 -->
+      <section class="tab-pane" id="panePages">
+        <div class="pane-head">
+          <div>
+            <h2>SITE PAGES / 页面内容</h2>
+            <div class="hint">公开展廊的「博物馆介绍」「关于」页面内容（Markdown）</div>
+          </div>
+        </div>
+        <div class="box" id="pageEditor">
+          <div class="f-row">
+            <div class="f"><label>页面</label>
+              <select id="pagePick"><option value="museum">博物馆介绍</option><option value="about">关于</option></select>
+            </div>
+            <div class="f"><label>标题</label><input id="pageTitle" /></div>
+            <div class="f"><label>副标题</label><input id="pageSub" /></div>
+          </div>
+          <div class="grid-2">
+            <div class="f">
+              <label>正文（Markdown）</label>
+              <div class="md-tools" data-target="pageContent">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="h3">H3</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="table">表格</button>
+                <button type="button" data-md="quote">引用</button>
+                <button type="button" data-md="hr">分隔</button>
+              </div>
+              <textarea id="pageContent" style="min-height:360px"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="pagePreview" style="max-height:520px"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="pageSave" type="button">保存页面</button>
+            <span class="unsaved" id="pageDirty">无修改</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 人员 -->
+      <section class="tab-pane" id="paneStaff">
+        <div class="pane-head">
+          <div>
+            <h2>KEEPERS / 楼层人员</h2>
+            <div class="hint">各楼层管理员信息（公开可见）</div>
+          </div>
+          <div class="toolbar">
+            <input id="stSearch" placeholder="检索姓名 / 楼层 / 方向" />
+            <button class="btn btn-gold btn-sm" id="stNew" type="button">+ 新建人员</button>
+          </div>
+        </div>
+
+        <div class="box" id="stEditor" style="display:none">
+          <h3 id="stEditorTitle">新建人员</h3>
+          <div class="f-row">
+            <div class="f"><label>姓名</label><input id="stName" /></div>
+            <div class="f"><label>楼层</label><input id="stFloor" placeholder="F1" /></div>
+            <div class="f"><label>职务</label><input id="stTitle" placeholder="楼层管理员" /></div>
+            <div class="f"><label>负责方向</label><input id="stDept" placeholder="苔原与声景" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>联系方式</label><input id="stContact" placeholder="f1@beishan-museum.example" /></div>
+            <div class="f"><label>排序</label><input id="stSort" type="number" value="100" /></div>
+          </div>
+          <div class="grid-2">
+            <div class="f">
+              <label>简介（Markdown）</label>
+              <div class="md-tools" data-target="stBio">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="quote">引用</button>
+              </div>
+              <textarea id="stBio" style="min-height:200px"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="stPreview"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="stSave" type="button">保存人员</button>
+            <button class="btn" id="stCancel" type="button">关闭</button>
+            <span class="unsaved" id="stDirty">无修改</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>人员列表</h3>
+          <div class="list" id="stList"><div class="empty">加载中…</div></div>
+        </div>
+      </section>
+
+      <!-- 人事秘档 -->
+      <section class="tab-pane" id="paneDossiers">
+        <div class="pane-head">
+          <div>
+            <h2>DOSSIERS / 人事秘档</h2>
+            <div class="hint">身份、学历、状况与秘闻 · 内廊按字段密级逐级解锁</div>
+          </div>
+          <div class="toolbar">
+            <input id="dsSearch" placeholder="检索姓名 / 代号" />
+            <button class="btn btn-gold btn-sm" id="dsNew" type="button">+ 新建秘档</button>
+          </div>
+        </div>
+
+        <div class="box classified" id="dsEditor" style="display:none">
+          <span class="stamp">CLASSIFIED DOSSIER</span>
+          <h3 id="dsEditorTitle">新建人事秘档</h3>
+
+          <!-- 证件照（一寸 295×413） -->
+          <div class="id-block dropzone" data-drop="dsAvatarFile">
+            <figure class="id-frame" id="dsAvatarFrame">
+              <img id="dsAvatarImg" src="" alt="" hidden />
+              <span class="ini" id="dsAvatarIni">—</span>
+            </figure>
+            <div class="id-side">
+              <label>证件照 / ID PHOTO</label>
+              <select id="dsAvatarMode">
+                <option value="id">证件照规格 295×413（居中裁切）</option>
+                <option value="fit">自适应（等比缩放，不裁切）</option>
+              </select>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn btn-sm btn-gold" id="dsAvatarPick" type="button">上传 / 更换</button>
+                <button class="btn btn-sm btn-danger" id="dsAvatarClear" type="button">移除</button>
+              </div>
+              <input type="file" id="dsAvatarFile" accept="image/*" hidden />
+              <div class="hint" id="dsAvatarHint">未上传 · 前台内廊将显示姓名首字</div>
+              <label>头像可见等级（低于该等级的访客不会收到头像数据）</label>
+              <input id="dsAvatarLevel" type="number" min="1" max="5" value="2" />
+            </div>
+          </div>
+
+          <div class="f-row">
+            <div class="f"><label>关联人员</label><select id="dsStaff"></select></div>
+            <div class="f"><label>代号</label><input id="dsCodeName" placeholder="KPR-F1" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>身份</label><input id="dsIdentity" placeholder="编制身份 / 实际身份" /></div>
+            <div class="f"><label>身份解锁等级</label><input id="dsIdentityLevel" type="number" min="1" max="5" value="2" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>学历</label><input id="dsEducation" placeholder="学历与专业训练" /></div>
+            <div class="f"><label>学历解锁等级</label><input id="dsEducationLevel" type="number" min="1" max="5" value="2" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f"><label>状况</label><input id="dsCondition" placeholder="在职 / 停职 / 观察期…" /></div>
+            <div class="f"><label>状况解锁等级</label><input id="dsConditionLevel" type="number" min="1" max="5" value="3" /></div>
+          </div>
+          <div class="f"><label>秘闻解锁等级</label><input id="dsSecretLevel" type="number" min="1" max="5" value="4" /></div>
+          <div class="grid-2">
+            <div class="f">
+              <label>秘闻正文（Markdown）</label>
+              <div class="md-tools" data-target="dsSecret">
+                <button type="button" data-md="h2">H2</button>
+                <button type="button" data-md="bold">粗体</button>
+                <button type="button" data-md="ul">列表</button>
+                <button type="button" data-md="quote">引用</button>
+                <button type="button" data-md="hr">分隔</button>
+              </div>
+              <textarea id="dsSecret" placeholder="## 秘闻 · 姓名&#10;…"></textarea>
+            </div>
+            <div class="f"><label>实时预览</label><div class="md-preview" id="dsPreview"></div></div>
+          </div>
+          <div class="form-bar">
+            <button class="btn btn-gold" id="dsSave" type="button">保存秘档</button>
+            <button class="btn" id="dsCancel" type="button">关闭</button>
+            <span class="unsaved" id="dsDirty">无修改</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>秘档列表</h3>
+          <div class="list" id="dsList"><div class="empty">加载中…</div></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="term-foot">
+    北山博物馆内部管理终端 · 所有操作记入访问日志 · 仅限授权人员使用
+  </div>
+</div>
+
+<script src="assets/vendor/workbuddy-cloud-sdk.global.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/js/core.js?v=6"></script>
+<script src="assets/js/admin.js?v=6"></script>
+</body>
+</html>

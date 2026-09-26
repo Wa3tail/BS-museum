@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>馆藏一览 · 北山博物馆虚拟导览</title>
+<meta name="description" content="北山博物馆虚拟导览：馆藏展品概览、图片档案与封存区权限调阅。" />
+<link rel="icon" href="assets/img/bs-001.svg" />
+<link rel="stylesheet" href="assets/css/public.css?v=6" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">BS</span>
+      <span class="brand-text"><b>北山博物馆</b><small>BEISHAN MUSEUM</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">馆藏一览</a>
+      <a href="museum.html">博物馆介绍</a>
+      <a href="staff.html">楼层管理员</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="header-actions">
+      <a id="authBtn" class="btn btn-ghost btn-sm" href="login.html">登录 / 认证</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-art" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <span class="hero-tag">VIRTUAL GALLERY / 虚拟展廊</span>
+    <h1>北山博物馆<br />一座会呼吸的博物馆</h1>
+    <p>收藏地球仍在书写的那一部分。本站提供馆藏展品的概览、图片与文字档案，封存区条目需通过权限认证后调阅。</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#collection">浏览馆藏</a>
+      <a class="btn" href="museum.html">了解馆区</a>
+    </div>
+    <div class="hero-stats" id="heroStats">
+      <div><span id="statTotal">—</span><small>EXHIBITS 展品</small></div>
+      <div><span id="statFloor">—</span><small>FLOORS 楼层</small></div>
+      <div><span id="statStaff">—</span><small>KEEPERS 值守</small></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section" id="collection">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="sub">COLLECTION OVERVIEW</div>
+          <h2>馆藏一览</h2>
+          <p>按楼层或关键词检索公开陈列条目，点击卡片查看完整文字档案。</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="field">
+          <input id="searchInput" type="search" placeholder="搜索展品名称、编号、标签…" />
+        </div>
+        <div class="chips" id="floorChips"></div>
+      </div>
+
+      <div class="grid" id="exhibitGrid">
+        <div class="skeleton" style="height:340px"></div>
+        <div class="skeleton" style="height:340px"></div>
+        <div class="skeleton" style="height:340px"></div>
+      </div>
+      <div class="empty" id="gridEmpty" style="display:none">没有匹配的展品。</div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="sealed-zone">
+        <div class="zone-copy">
+          <h3>封存区 · B1 已不对开放索引</h3>
+          <p>部分条目因来源待定或结论未定不列入公开索引，其完整档案随条目密级分层存放。登录并提交权限密钥后，可在对应条目下方看到当前等级所能覆盖的那一部分。</p>
+          <p style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-dim)">编号示例：BS-007 / BS-008　·　密钥由馆务办公室发放</p>
+        </div>
+        <div class="zone-side">
+          <div class="zone-code-line">RESTRICTED / 分级调阅</div>
+          <p style="margin:0;color:var(--ink-soft);font-size:14px">值守人员的身份、学历、状况与秘闻同步收录，逐字段按密级解锁。</p>
+          <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-dim)">未持有密钥者无需尝试，全部调阅均记入访问日志。</p>
+          <div style="margin-top:6px"><span class="ghost-gate"><a href="inner.html" tabindex="-1" aria-hidden="true">内廊</a></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>BEISHAN MUSEUM</h4>
+        <p style="color:var(--ink-soft);font-size:14px;margin:0">
+          北山生态保护区南麓 · 白色砂岩台地<br />
+          周二至周日 09:00 - 17:30 开放
+        </p>
+      </div>
+      <div>
+        <h4>导览</h4>
+        <ul>
+          <li><a href="index.html">馆藏一览</a></li>
+          <li><a href="museum.html">博物馆介绍</a></li>
+          <li><a href="staff.html">楼层管理员</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>内部</h4>
+        <ul>
+          <li><a href="login.html">身份认证</a></li>
+          <li><a href="about.html">关于本站</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 北山博物馆信息化小组 · 虚拟导览系统</span>
+      <span>本站为演示性质，馆藏、人员与档案均为虚构内容</span>
+      <span class="ghost-gate"><a href="inner.html" tabindex="-1" aria-hidden="true">内廊</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/workbuddy-cloud-sdk.global.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/js/core.js?v=6"></script>
+<script src="assets/js/home.js?v=6"></script>
+</body>
+</html>

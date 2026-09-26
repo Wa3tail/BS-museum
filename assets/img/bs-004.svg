@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="雾森种子库">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAFAF7"/><stop offset="100%" stop-color="#E7EBE4"/>
+    </linearGradient>
+    <linearGradient id="gold4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DBC598"/><stop offset="100%" stop-color="#B99A55"/>
+    </linearGradient>
+    <linearGradient id="frost" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g4)"/>
+  <g opacity=".5">
+    <rect x="0" y="120" width="800" height="60" fill="url(#frost)" opacity=".5"/>
+    <rect x="0" y="300" width="800" height="80" fill="url(#frost)" opacity=".4"/>
+  </g>
+  <g>
+    <rect x="120" y="130" width="560" height="360" rx="12" fill="#F3F5EF" stroke="#C9D0C1" stroke-width="1.6"/>
+    <rect x="120" y="130" width="560" height="16" fill="#FBFCF9"/>
+    <g>
+      <g transform="translate(150 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="82" rx="12" ry="17" fill="url(#gold4)" opacity=".85"/>
+        <path d="M23 100 v14" stroke="#B99A55" stroke-width="1.2" opacity=".7"/>
+      </g>
+      <g transform="translate(216 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="76" rx="11" ry="15" fill="url(#gold4)" opacity=".7"/>
+      </g>
+      <g transform="translate(282 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <circle cx="23" cy="80" r="11" fill="url(#gold4)" opacity=".8"/>
+      </g>
+      <g transform="translate(348 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="88" rx="13" ry="12" fill="url(#gold4)" opacity=".65"/>
+      </g>
+      <g transform="translate(414 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="78" rx="10" ry="16" fill="url(#gold4)" opacity=".75"/>
+      </g>
+      <g transform="translate(480 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <circle cx="23" cy="84" r="10" fill="url(#gold4)" opacity=".6"/>
+      </g>
+      <g transform="translate(546 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="80" rx="12" ry="15" fill="url(#gold4)" opacity=".8"/>
+      </g>
+      <g transform="translate(612 180)">
+        <rect width="46" height="120" rx="23" fill="#FFFFFF" stroke="url(#gold4)" stroke-width="1.6"/>
+        <ellipse cx="23" cy="86" rx="11" ry="13" fill="url(#gold4)" opacity=".55"/>
+      </g>
+    </g>
+    <g stroke="#CBD2C2" stroke-width="1" opacity=".8">
+      <line x1="120" y1="330" x2="680" y2="330"/>
+      <line x1="120" y1="356" x2="680" y2="356"/>
+    </g>
+    <g fill="#B99A55" opacity=".25">
+      <circle cx="180" cy="400" r="4"/><circle cx="260" cy="404" r="3"/><circle cx="340" cy="398" r="4"/>
+      <circle cx="420" cy="406" r="3"/><circle cx="500" cy="400" r="4"/><circle cx="580" cy="404" r="3"/>
+    </g>
+  </g>
+  <g stroke="#C0A05C" stroke-width="1.2" opacity=".45"><path d="M140 540 H660"/></g>
+</svg>

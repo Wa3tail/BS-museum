@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>各楼层管理员 · 北山博物馆虚拟导览</title>
+<meta name="description" content="北山博物馆各楼层值守管理员信息与分工。" />
+<link rel="icon" href="assets/img/bs-001.svg" />
+<link rel="stylesheet" href="assets/css/public.css?v=6" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">BS</span>
+      <span class="brand-text"><b>北山博物馆</b><small>BEISHAN MUSEUM</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">馆藏一览</a>
+      <a href="museum.html">博物馆介绍</a>
+      <a href="staff.html">楼层管理员</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="header-actions">
+      <a id="authBtn" class="btn btn-ghost btn-sm" href="login.html">登录 / 认证</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="min-height:auto">
+  <div class="hero-art" aria-hidden="true"></div>
+  <div class="wrap hero-inner" style="padding:64px 0 52px">
+    <span class="hero-tag">FLOOR KEEPERS</span>
+    <h1>各楼层管理员</h1>
+    <p>每层展区由一名管理员负责日常值守、设备校准与参观引导。点击卡片查看完整分工说明。</p>
+  </div>
+</section>
+
+<main>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="sub">DUTY ROSTER</div>
+          <h2>值守名录</h2>
+        </div>
+      </div>
+      <div class="staff-grid" id="staffGrid">
+        <div class="skeleton" style="height:180px"></div>
+        <div class="skeleton" style="height:180px"></div>
+        <div class="skeleton" style="height:180px"></div>
+      </div>
+      <div class="empty" id="staffEmpty" style="display:none">暂无值守信息。</div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>BEISHAN MUSEUM</h4>
+        <p style="color:var(--ink-soft);font-size:14px;margin:0">
+          北山生态保护区南麓 · 白色砂岩台地<br />
+          周二至周日 09:00 - 17:30 开放
+        </p>
+      </div>
+      <div>
+        <h4>导览</h4>
+        <ul>
+          <li><a href="index.html">馆藏一览</a></li>
+          <li><a href="museum.html">博物馆介绍</a></li>
+          <li><a href="staff.html">楼层管理员</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>内部</h4>
+        <ul>
+          <li><a href="login.html">身份认证</a></li>
+          <li><a href="about.html">关于本站</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 北山博物馆信息化小组 · 虚拟导览系统</span>
+      <span>本站为演示性质，馆藏、人员与档案均为虚构内容</span>
+      <span class="ghost-gate"><a href="inner.html" tabindex="-1" aria-hidden="true">内廊</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/workbuddy-cloud-sdk.global.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/js/core.js?v=6"></script>
+<script src="assets/js/staff.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="封存条目">
+  <defs>
+    <linearGradient id="gs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F2F3EF"/><stop offset="100%" stop-color="#DFE3DC"/>
+    </linearGradient>
+    <linearGradient id="golds" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C9B183"/><stop offset="100%" stop-color="#A98F52"/>
+    </linearGradient>
+    <pattern id="hatch" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#B8C0B0" stroke-width="2" opacity=".35"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#gs)"/>
+  <rect width="800" height="600" fill="url(#hatch)"/>
+  <g transform="translate(400 300)">
+    <circle r="132" fill="#F7F8F4" stroke="url(#golds)" stroke-width="2" opacity=".95"/>
+    <circle r="152" fill="none" stroke="#A98F52" stroke-width="1" opacity=".3"/>
+    <path d="M-46 -6 h92 v70 h-92 z" fill="none" stroke="url(#golds)" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M-30 -6 v-34 a30 30 0 0 1 60 0 v34" fill="none" stroke="url(#golds)" stroke-width="6" stroke-linecap="round"/>
+    <circle cy="30" r="8" fill="url(#golds)"/>
+    <path d="M-70 96 h140" stroke="#A98F52" stroke-width="2" opacity=".5"/>
+  </g>
+  <g fill="#A98F52" opacity=".6">
+    <rect x="330" y="486" width="140" height="6" rx="3"/>
+    <rect x="356" y="504" width="88" height="6" rx="3" opacity=".6"/>
+  </g>
+</svg>
