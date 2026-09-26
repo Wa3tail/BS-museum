@@ -6,15 +6,12 @@
  * 跨域调用会被浏览器拦截。本服务以服务器身份转发请求并自行应答 CORS，
  * 使 GitHub Pages 前端可以正常访问后端。
  *
- * ── 部署步骤（连 GitHub 仓库，最省事）──
- * 1. 打开 https://dash.deno.com 用 GitHub 账号登录（免费）
- * 2. New Project → 选「Deploy from GitHub repository」→ 选本仓库 BS-museum
- * 3. Entrypoint 设为 deno/deploy.ts → Deploy
- * 4. 记下分配的地址，形如 https://bs-museum-proxy.deno.dev
- * 5. 回到前端仓库，把该地址填入 assets/js/core.js 的 GITHUB_PROXY_ENDPOINT 常量并提交推送
- *
- * ── CLI 方式（可选）──
- * deno deploy --project bs-museum-proxy --entrypoint deno/deploy.ts
+ * ── 部署步骤（新平台 console.deno.com，二选一）──
+ * A. GitHub 仓库方式：+ New app → Import from GitHub → 选 Wa3tail/BS-museum
+ *    → Root directory 留空、Entrypoint 填 deno/deploy.ts → Deploy
+ * B. Playground 方式（最快）：New Playground → 把本文件全部内容粘进编辑器 → Deploy
+ * 部署后得到地址形如 https://<app-name>.deno.dev
+ * 回到前端把该地址填入 assets/js/core.js 的 GITHUB_PROXY_ENDPOINT 并提交推送
  */
 
 /* 允许跨域访问本代理的来源。换了域名/想本地调试就在这里加 */
@@ -43,8 +40,7 @@ function corsHeaders(origin: string, preflightHeaders?: string | null) {
   };
 }
 
-export default {
-  async fetch(request: Request): Promise<Response> {
+function handler(request: Request): Promise<Response> | Response {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin') || '';
 
@@ -96,5 +92,7 @@ export default {
       statusText: upstreamResp.statusText,
       headers: respHeaders,
     });
-  },
-};
+}
+
+/* 新版 Deno Deploy（console.deno.com）使用标准 Deno.serve 启动 */
+Deno.serve(handler);
