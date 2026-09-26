@@ -95,4 +95,6 @@ async function handler(request: Request): Promise<Response> {
 }
 
 /* 新版 Deno Deploy（console.deno.com）使用标准 Deno.serve 启动 */
-Deno.serve(handler);
+if (typeof Deno !== 'undefined' && Deno.serve) {
+  Deno.serve(handler);
+}
