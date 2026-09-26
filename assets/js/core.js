@@ -5,6 +5,18 @@ const PUBLIC_CONFIG = {
   publishableKey: 'wbpk_IV65AoQcpebbW87WWLnUoH_pGxB5lQm3MTueaLfGm6pPNmjEGpn6aAP',
 };
 
+/* ---------- GitHub Pages 部署支持 ----------
+ * 云端后端的 CORS 预检白名单仅放行平台自身域名，GitHub Pages（*.github.io）
+ * 无法直连，需经 Cloudflare Worker 反向代理（部署方法见 cloudflare/worker.js）。
+ * Worker 部署后把分配的地址填到 GITHUB_PROXY_ENDPOINT；
+ * 临时调试也可不动代码：localStorage.setItem('bs_proxy_endpoint', 'https://...') 后刷新。 */
+const GITHUB_PROXY_ENDPOINT = ''; // 例: 'https://bs-museum-proxy.your-subdomain.workers.dev'
+
+if (typeof location !== 'undefined' && location.hostname.endsWith('.github.io')) {
+  PUBLIC_CONFIG.endpoint =
+    localStorage.getItem('bs_proxy_endpoint') || GITHUB_PROXY_ENDPOINT || PUBLIC_CONFIG.endpoint;
+}
+
 /* ---------- 云服务客户端（全局唯一实例） ---------- */
 const cloud = (function createClient() {
   if (typeof WorkBuddyCloud === 'undefined' || !WorkBuddyCloud.createWorkBuddyCloud) {
