@@ -40,7 +40,7 @@ function corsHeaders(origin: string, preflightHeaders?: string | null) {
   };
 }
 
-function handler(request: Request): Promise<Response> | Response {
+async function handler(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin') || '';
 
